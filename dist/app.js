@@ -2555,7 +2555,7 @@ var _test2 = _interopRequireDefault(_test);
 
 __webpack_require__(141);
 
-__webpack_require__(143);
+__webpack_require__(144);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2564,8 +2564,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // // require('./style/test')
-// import './style/css/test'
 (0, _reactDom.render)(_react2.default.createElement(_test2.default, null), document.getElementById('test'));
+// import './style/less/index'
 
 /***/ }),
 /* 70 */
@@ -19890,10 +19890,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Test = function (_Component) {
   _inherits(Test, _Component);
 
-  function Test() {
+  function Test(props) {
     _classCallCheck(this, Test);
 
-    return _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).call(this, props));
   }
 
   _createClass(Test, [{
@@ -19907,7 +19907,8 @@ var Test = function (_Component) {
           null,
           'Radio'
         ),
-        _react2.default.createElement('img', { src: './images/icon.png' })
+        _react2.default.createElement('div', { className: 'css-img' }),
+        _react2.default.createElement('div', { className: 'test', style: { width: '200px', height: '200px', border: '1px solid red', background: "url(./icon.png)" } })
       );
     }
   }]);
@@ -23010,8 +23011,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/cjs.js!./index.less", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/cjs.js!./index.less");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./test.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./test.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -23029,7 +23030,7 @@ exports = module.exports = __webpack_require__(28)(undefined);
 
 
 // module
-exports.push([module.i, "div {\n  background: yellow;\n  font-size: 40px;\n}\n", ""]);
+exports.push([module.i, "div{\r\n  color: red;\r\n}\r\n.css-img{\r\n  background: url(" + __webpack_require__(143) + ");\r\n}", ""]);
 
 // exports
 
@@ -23038,10 +23039,16 @@ exports.push([module.i, "div {\n  background: yellow;\n  font-size: 40px;\n}\n",
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "images/66f44cf9.icon.png";
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(144);
+var content = __webpack_require__(145);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -23066,7 +23073,7 @@ if(false) {
 }
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(28)(undefined);

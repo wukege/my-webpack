@@ -1,8 +1,15 @@
 {
-  "presets": ["env","react"],
-  "plugins": [["import", {
-    "libraryName": "antd",
-    "style": true
-  }]]
-
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
+  ]
 }

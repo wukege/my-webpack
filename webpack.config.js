@@ -41,17 +41,25 @@ module.exports = {
       },
       {
         test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
-        use:['file-loader?name=[name].[ext]'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ],
         exclude: /^node_modules$/,
         include: [APP_PATH] //只打包src文件夹中的内容
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use:[
+        use: [
           {
-            loader: 'url-loader?name=images/[hash:8].[name].[ext]',
+            loader: 'url-loader',
             options: {
-              limit:8192
+              limit: 8192,
+              name: 'images/[hash:8].[name].[ext]'
             }
           }
         ],
@@ -64,6 +72,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
   },
   devServer: {
+    contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,
     inline: true,//注意：不写hot: true，否则浏览器无法自动更新；也不要写colors:true，progress:true等，webpack2.x已不支持这些
   },

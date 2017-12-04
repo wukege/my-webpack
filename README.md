@@ -93,6 +93,19 @@ npm install --save-dev babel-plugin-import
     extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
    }
 ```
+3. 图片路径打包问题
+- 引入图片的方式
+```
+// css引用图片方式
+.css-img{
+  background: url("../../images/icon.png");
+}
+// js引入
+  <img src={require('./images/icon.png')}/>
+// js中使用style引入背景图片
+<div style={{width:'200px',height:'200px',border:'1px solid red',backgroundImage:"url("+require('./images/icon.png')+")"}}></div>  
+```
+> js引入图片时需要使用模块化方式导入图片的方式
 
 启动服务
 热加载
