@@ -107,9 +107,21 @@ npm install --save-dev babel-plugin-import
 ```
 > js引入图片时需要使用模块化方式导入图片的方式
 
-启动服务
-热加载
-webpack插件
-图片加载
+4. 启动服务
+```
+//安装webpack-dev-server 
+npm install --save-dev webpack-dev-server
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true,
+    //open : true, //打开默认浏览器
+    inline: true,//注意：不写hot: true，否则浏览器无法自动更新；也不要写colors:true，progress:true等，webpack2.x已不支持这些
+  },
+```
+5. webpack插件
+
+6. 热加载
+
+
 数据管理配置 
 路由配置

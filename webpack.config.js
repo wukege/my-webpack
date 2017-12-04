@@ -74,6 +74,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,
+    //open : true, //打开默认浏览器
     inline: true,//注意：不写hot: true，否则浏览器无法自动更新；也不要写colors:true，progress:true等，webpack2.x已不支持这些
   },
 }

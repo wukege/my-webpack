@@ -2,5 +2,5 @@ div{
   color: red;
 }
 .css-img{
-  background: url("../../images/icon.png");
+  background: url("../../images/icon.png") no-repeat;
 }
