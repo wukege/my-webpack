@@ -94,7 +94,7 @@ npm install --save-dev babel-plugin-import
    }
 ```
 3. 图片路径打包问题
-- 引入图片的方式
+**引入图片的方式**
 ```
 // css引用图片方式
 .css-img{
@@ -119,8 +119,51 @@ npm install --save-dev webpack-dev-server
   },
 ```
 5. webpack插件
+**配置全局常量（DefinePlugin）内置插件**
+```
+const webpack = require('webpack'); //访问内置的插件
+new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development') //定义编译环境
+      }
+})
+```
+```
+const webpack = require('webpack'); //访问内置的插件
+new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify('production') //定义生产环境
+        }
+}),
+```
+> webpack插件有内置插件和第三方插件
 
-6. 热加载
+6. webpack自定义插件
+```
+//定义插件
+class helloPlugin{
+  constructor(options){
+    if(options){
+      for(let el in options){
+        console.log('插件调用-'+ options[el]);
+      }
+    }
+  }
+  apply(compiler){ //apply 方法在安装插件时将被 webpack 编译器调用一次
+    console.log(compiler);
+    compiler.plugin('done',() => console.log('hello world'))
+  }
+}
+module.exports = helloPlugin;
+```
+```
+//调用插件
+const hello = require('./plugin/helloPlugin'); //访问自定义插件
+new hello({
+  test:'测试'
+}),
+```
+7. 热加载
 
 
 数据管理配置 

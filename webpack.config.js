@@ -1,5 +1,6 @@
 const path = require('path');
-
+const webpack = require('webpack');
+const hello = require('./plugin/helloPlugin');
 const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'src'); //__dirname 中的src目录，以此类推
 const APP_FILE = path.resolve(APP_PATH, 'index.js'); //根目录文件index.js地址
@@ -71,6 +72,16 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
   },
+  plugins:[
+    new hello({
+      test:'测试'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development') //定义编译环境
+      }
+    })
+  ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,

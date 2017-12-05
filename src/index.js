@@ -8,7 +8,7 @@ import './style/scss/index'
 // print('hello');
 // import react
 
-
+console.log(process.env)
 render(
     <Test />,
     document.getElementById('test')
