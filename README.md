@@ -164,6 +164,10 @@ new hello({
 }),
 ```
 7. 热加载
+8. 生成html插件
+```
+npm install html-webpack-plugin --save-dev
+```
 
 
 数据管理配置 
