@@ -168,7 +168,12 @@ new hello({
 ```
 npm install html-webpack-plugin --save-dev
 ```
-
+9. 设置开发环境和生产环境切换
+```
+ npm install -D cross-env
+ "dev": "cross-env NODE_ENV=development webpack  --progress",
+ "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+```
 
 数据管理配置 
 路由配置
