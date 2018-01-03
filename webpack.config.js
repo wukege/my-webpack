@@ -1,14 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const hello = require('./plugin/helloPlugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html模板
+const ExtractTextPlugin = require('extract-text-webpack-plugin');//提取css样式
+
 const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'src'); //__dirname 中的src目录，以此类推
 const APP_FILE = path.resolve(APP_PATH, 'index.js'); //根目录文件index.js地址
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist'); //发布文件所存放的目录
 
 const getEntrys = require('./getEntrys')();
-console.log(getEntrys)
 //循环生成每个入口文件对应的html
 const HtmlWebpack = [];
 Object.keys(getEntrys).forEach((item, index) => {
@@ -35,11 +36,13 @@ Object.keys(getEntrys).forEach((item, index) => {
     }
   })
 });
+
+const extractCSS = new ExtractTextPlugin('css/[name].css');
+const extractStyl = new ExtractTextPlugin('css/[name].styl');
+const extractLess = new ExtractTextPlugin('css/[name].less');
+
+
 //配置公共插件
-
-
-
-
 const commonPlugin =[
   new hello({
     test:'测试'
@@ -48,10 +51,11 @@ const commonPlugin =[
     'process.env': {
       NODE_ENV: JSON.stringify('development') //定义编译环境
     }
-  })
-]
-
-
+  }),
+  extractCSS,
+  extractStyl,
+  extractLess
+];
 
 module.exports = {
   entry:getEntrys,
@@ -73,17 +77,33 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        //use: ['style-loader', 'css-loader'],
+        use:extractCSS.extract({
+          publicPath:'../',
+          use:[ 'css-loader']
+        }),
         exclude: /^node_modules$/, //排除node_modules
         include: [APP_PATH] //只打包src文件夹中的内容
       },
       {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        test: /\.styl$/,
+        //use: ['style-loader', 'css-loader', 'stylus-loader']
+        use:extractStyl.extract(
+          {
+            publicPath:'../', //设置css路径
+            use:  ['css-loader', 'stylus-loader']
+          }
+        ),
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.less$/,
+        //use: ['style-loader', 'css-loader', 'stylus-loader']
+        use:extractLess.extract(
+            {
+              publicPath:'../',
+              use: ['css-loader', 'less-loader']
+            }
+        ),
       },
       {
         test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
@@ -115,7 +135,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
+    extensions: ['.js', '.jsx', '.less', '.scss', '.css','styl'], //后缀名自动补全
   },
   plugins:HtmlWebpack.concat(commonPlugin),
   devServer: {
