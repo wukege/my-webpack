@@ -37,11 +37,6 @@ Object.keys(getEntrys).forEach((item, index) => {
   })
 });
 
-const extractCSS = new ExtractTextPlugin('css/[name].css');
-const extractStyl = new ExtractTextPlugin('css/[name].styl');
-const extractLess = new ExtractTextPlugin('css/[name].less');
-
-
 //配置公共插件
 const commonPlugin =[
   new hello({
@@ -52,9 +47,13 @@ const commonPlugin =[
       NODE_ENV: JSON.stringify('development') //定义编译环境
     }
   }),
-  extractCSS,
-  extractStyl,
-  extractLess
+  new ExtractTextPlugin('css/[name].css'),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    //React: 'react',
+    //ReactDOM: 'react-dom',
+    //PT: 'prop-types'
+  }),
 ];
 
 module.exports = {
@@ -77,9 +76,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        //use: ['style-loader', 'css-loader'],
-        use:extractCSS.extract({
+        use:ExtractTextPlugin.extract({
           publicPath:'../',
+          fallback: "style-loader",
           use:[ 'css-loader']
         }),
         exclude: /^node_modules$/, //排除node_modules
@@ -87,20 +86,20 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        //use: ['style-loader', 'css-loader', 'stylus-loader']
-        use:extractStyl.extract(
+        use:ExtractTextPlugin.extract(
           {
             publicPath:'../', //设置css路径
+            fallback: "style-loader",
             use:  ['css-loader', 'stylus-loader']
           }
         ),
       },
       {
         test: /\.less$/,
-        //use: ['style-loader', 'css-loader', 'stylus-loader']
-        use:extractLess.extract(
+        use:ExtractTextPlugin.extract(
             {
               publicPath:'../',
+              fallback: "style-loader",
               use: ['css-loader', 'less-loader']
             }
         ),
@@ -136,6 +135,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.less', '.scss', '.css','styl'], //后缀名自动补全
+    modules:[
+      'node_modules'
+    ]
   },
   plugins:HtmlWebpack.concat(commonPlugin),
   devServer: {

@@ -177,3 +177,32 @@ npm install html-webpack-plugin --save-dev
 
 数据管理配置 
 路由配置
+### 处理兼容
+1. 让IE6-8支持CSS3 Media Query
+```
+//在页面中引入respond.js
+//http://caibaojian.com/respondjs.html
+```
+2. IE8部分语法不支持解决方案
+```
+//https://github.com/xcatliu/react-ie8
+require('es5-shim');
+require('es5-shim/es5-sham');
+require('console-polyfill');
+```
+3. IE8中使用react注意事项
+```
+//1.react的版本必须使用^0.14.9及下版本
+//2.不要在页面中使用import export default class
+```
+4. IE8中使用antd注意事项
+```
+//1.antd的版本必须使用^1.11.6及下版本
+//2.安装babel-plugin-import模块 
+//3.配置.babelrc 
+//4.查考地址https://github.com/ant-design/babel-plugin-import#usage
+
+5. jQuery从2.0开始不支持IE8
+```
+//安装1.9版本的jQuery
+```
