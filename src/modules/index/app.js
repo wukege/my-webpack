@@ -1,41 +1,25 @@
-//import React,{Component} from 'react';
-//import ReactDOM,{render} from 'react-dom';
-//require('es5-shim/es5-sham');
-////require('es5-shim');
-//require('console-polyfill');
-
-//让IE6-8支持CSS3 Media Query
-//require('respond');
 require('es5-shim');
 require('es5-shim/es5-sham');
 require('console-polyfill');
 
-
-
 const React = require('react');
 const ReactDOM = require('react-dom');
 let Button = require('antd/lib/button');
+let Input = require('antd/lib/input');
+
 require('antd/lib/button/style');
+require('antd/lib/input/style');
 
-console.log(Button);
-//import Test from './../../component/test';
-// // require('./style/test')
-import './../../style/css/test'
-// import './style/less/index'
-// import './style/scss/index'
-// print('hello');
-// import react
+require('css/car.styl')
+console.log(process.env,111111)
 
-//render(
-//    <Test />,
-//    document.getElementById('main')
-//)
-
+console.log($(document));
 var HelloMessage = React.createClass({
   render: function() {
     return <div>
       Hello {this.props.name}
-      <Button type="primary">Primary</Button>
+      <Button type="primary">Primaryadfasdfsfsaf</Button>
+      <Input placeholder="基本使用" />
       <Button>Default</Button>
       <Button type="ghost">Ghost</Button>
       <Button type="dashed">Dashed</Button>
@@ -50,4 +34,3 @@ ReactDOM.render(
     document.getElementById('main')
 );
 
-console.log($(document))

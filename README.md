@@ -206,3 +206,17 @@ require('console-polyfill');
 ```
 //安装1.9版本的jQuery
 ```
+
+### 配置打包输出文件目录
+### 优化webpack打包文件大小
+### 设置代理服务器
+### 配置公共文件
+### 废弃
+```
+  new webpack.ProvidePlugin({
+    //$: 'jquery',
+    React: 'react',
+    ReactDOM: 'react-dom',
+    //PT: 'prop-types'
+  }),
+```

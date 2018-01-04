@@ -1,0 +1,50 @@
+// 元素居中
+center()
+	if !arguments[1]
+		position absolute
+	else
+		position arguments[1]
+	if arguments[0] == 'x'
+		left 50%
+		transform translate(-50%, 0)
+	else if arguments[0] == 'y'
+		top 50%
+		transform translate(0, -50%)
+	else
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+
+// 方形
+square()
+	width arguments
+	height @width  
+
+rem()
+	return 1rem if !arguments[0]
+	return (arguments[0] / 24)rem (arguments[1] / 24)rem if (arguments[1])
+	return (arguments[0] / 24)rem
+
+em()
+	return 1em if !arguments[0]
+	return 1px if arguments[0] <= 1 && arguments[0] >=0
+	return (arguments[0] / arguments[1])em if arguments[1]
+	return (arguments[0] / 24)em
+
+per()
+	return 100% if !arguments[0]
+	return (arguments[0] / arguments[1] * 100%) if arguments[1]
+	return (arguments[0] / 720 * 100%)
+	
+circle()
+	border-radius 50%
+
+ellipsis()
+	overflow hidden
+	text-overflow ellipsis
+	if arguments
+		display -webkit-box
+		-webkit-line-clamp arguments[1] ? arguments[1] : 2
+		-webkit-box-orient vertical
+	else
+		white-space nowrap

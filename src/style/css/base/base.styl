@@ -1,0 +1,53 @@
+/**
+	基础样式
+	========
+ */
+/**
+    Stylus 格式规范
+    -----------------
+    - 变量命名以$开头
+    - 函数调用需加括号
+ */
+@import 'variable'
+@import 'mixin'
+@import 'reset'
+
+
+/**
+ * Floats
+ */
+.fl
+	float left
+.fr
+	float right
+
+
+/**
+ * Clearfix
+.clearfix:after
+	visibility hidden
+	display block
+	font-size 0
+	content " "
+	clear both
+	height 0
+.clearfix
+    *zoom 1
+*/
+
+
+
+.clearfix:after {
+	content: "";
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	display: block;
+}
+
+.clearfix { display: inline; }
+
+/* Start Commented Backslash Hack \*/
+* html .clearfix, * html .clearfix * {height: 1%;}
+.clearfix { display: block; }
+/* Close Commented Backslash Hack */
